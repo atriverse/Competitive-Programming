@@ -1,0 +1,371 @@
+Codeforces Round 970 (Div. 3)
+A. Sakurako's Exam
+time limit per test1 second
+memory limit per test256 megabytes
+Today, Sakurako has a math exam. The teacher gave the array, consisting of a ones and b twos.
+
+In an array, Sakurako must place either a '+' or a '-' in front of each element so that the sum of all elements in the array equals 0
+
+Sakurako is not sure if it is possible to solve this problem, so determine whether there is a way to assign signs such that the sum of all elements in the array equals 0.
+
+Input
+The first line contains a single integer t(1≤t≤100)  — the number of test cases.
+
+The only line of each test case contains two integers a and b (0≤a,b<10)  — the number of '1's and the number of '2's in the array.
+
+Output
+For each test case, output "Yes" if you can make the sum of the entire array equal to 0, and "No" otherwise.
+
+You can output each letter in any case (lowercase or uppercase). For example, the strings "yEs", "yes", "Yes", and "YES" will be accepted as a positive answer.
+
+Example
+Input
+5
+0 1
+0 3
+2 0
+2 3
+3 1
+Output
+NO
+NO
+YES
+YES
+NO
+
+Note: a=0, b=1: This means the array is [2] — it is impossible to add the signs '+' or '-' to get 0 as a result;
+a=0, b=3: This means the array is [2,2,2] — it is impossible to add the signs '+' or '-' to get 0 as a result;
+a=2, b=0: This means the array is [1,1] — it is possible to add the signs '+' or '-' to get 0 as a result (+1−1=0);
+a=2, b=3: This means the array is [1,1,2,2,2] — it is possible to add the signs '+' or '-' to get 0 as a result (+1+1−2−2+2=0);
+
+
+B. Square or Not
+time limit per test2 seconds
+memory limit per test256 megabytes
+A beautiful binary matrix is a matrix that has ones on its edges and zeros inside.
+
+Examples of four beautiful binary matrices.
+Today, Sakurako was playing with a beautiful binary matrix of size r×c and created a binary string s by writing down all the rows of the matrix,starting from the first and ending with the r-th. More formally, the element from the matrix in the i-th row and j-th column corresponds to the ((i−1)∗c+j)-th element of the string.
+
+You need to check whether the beautiful matrix from which the string s was obtained could be squared. In other words, you need to check whether the string s could have been build from a square beautiful binary matrix (i.e., one where r=c).
+
+Input
+The first line contains a single integer t (1≤t≤104) — the number of test cases.
+
+The first line of each test case contains a single integer n (2≤n≤2⋅105) — the length of the string.
+
+The second line of each test case contains the string s of length . The string is always the result of writing out the strings of a beautiful matrix.
+
+It is guaranteed that the sum of n across all test cases does not exceed 2⋅105.
+
+Output
+Print "Yes", if the original matrix could have been square, and "No" otherwise.
+
+Example
+Input
+5
+2
+11
+4
+1111
+9
+111101111
+9
+111111111
+12
+111110011111
+Output
+No
+Yes
+Yes
+No
+No
+NoteFor the second test case, string 1111 can be obtained from the matrix:
+
+1 1
+1 1
+For the third test case, string 111101111 can be obtained from the matrix:
+
+1 1 1 
+1 0 1
+1 1 1
+
+There is no square matrix in the fourth case, such that the string can be obtained from it.
+
+C. Longest Good Array
+time limit per test2 seconds
+memory limit per test256 megabytes
+Today, Sakurako was studying arrays. An array a of length n is considered good if and only if:the array a is increasing, meaning ai−1<ai for all 2≤i≤n;the differences between adjacent elements are increasing, meaning ai−ai−1<ai+1−ai for all 2≤i<n
+.
+Sakurako has come up with boundaries l and r and wants to construct a good array of maximum length, where l≤ai≤r for all ai.
+
+Help Sakurako find the maximum length of a good array for the given l and r.
+
+Input
+The first line contains a single integer t (1≤t≤104)  — the number of test cases.
+
+The only line of each test case contains two integers l and r (1≤l≤r≤109).
+
+Output
+For each test case, output a single integer  — the length of the longest good array Sakurako can form given l and r.
+
+Example
+Input
+5
+1 2
+1 5
+2 2
+10 20
+1 1000000000
+Output
+2
+3
+1
+5
+44721
+Note
+For l=1 and r=5, one possible array could be (1,2,5). It can be proven that an array of length 4 does not exist for the given l and r.
+
+For l=2 and r=2, the only possible array is (2).
+
+For l=10 and r=20, the only possible array is (10,11,13,16,20).
+
+D. Sakurako's Hobby
+time limit per test2 seconds
+memory limit per test256 megabytes
+For a certain permutation p∗ Sakurako calls an integer j reachable from an integer i if it is possible to make i equal to j by assigning i=pi a certain number of times.
+If p=[3,5,6,1,2,4], then, for example, 4 is reachable from 1, because: i=1 → i=p1=3 → i=p3=6 → i=p6=4. Now i=4, so 4 is reachable from 1.
+
+Each number in the permutation is colored either black or white.
+
+Sakurako defines the function F(i) as the number of black integers that are reachable from i.
+
+Sakurako is interested in F(i) for each 1≤i≤n, but calculating all values becomes very difficult, so she asks you, as her good friend, to compute this.
+∗
+A permutation of length n is an array consisting of n distinct integers from 1 to  in arbitrary order. For example, [2,3,1,5,4] is a permutation, but[1,2,2] is not a permutation (the number 2 appears twice in the array), and [1,3,4] is also not a permutation (n=3, but the array contains 4).
+
+Input
+The first line contains a single integer t (1≤t≤104)  — the number of test cases.
+The first line of each test case contains a single integer n (1≤n≤2⋅105)  — the number of elements in the array.
+
+The second line of each test case contains n integers p1,p2,…,pn (1≤pi≤n)  — the elements of the permutation.
+
+The third line of each test case contains a string s of length n, consisting of '0' and '1'. If si=0, then the number pi is colored black; if si=1, then the number pi is colored white.
+
+It is guaranteed that the sum of  across all test cases does not exceed 2⋅105.
+
+Output
+For each test case, output n integers F(1),F(2),…,F(n).
+
+Example
+Input
+5
+1
+1
+0
+5
+1 2 4 5 3
+10101
+5
+5 4 1 3 2
+10011
+6
+3 5 6 1 2 4
+010000
+6
+1 2 3 4 5 6
+100110
+Output
+1 
+0 1 1 1 1 
+2 2 2 2 2 
+4 1 4 4 1 4 
+0 1 1 0 0 1 
+
+E. Alternating String
+time limit per test2 seconds
+memory limit per test256 megabytes
+Sakurako really loves alternating strings. She calls a string s of lowercase Latin letters an alternating string if characters in the even positions are the same, if characters in the odd positions are the same, and the length of the string is even.
+
+For example, the strings 'abab' and 'gg' are alternating, while the strings 'aba' and 'ggwp' are not.
+
+As a good friend, you decided to gift such a string, but you couldn't find one. Luckily, you can perform two types of operations on the string:
+
+Choose an index i and delete the i-th character from the string, which will reduce the length of the string by 1. This type of operation can be performed no more than 1 time;
+Choose an index i and replace si with any other letter.
+Since you are in a hurry, you need to determine the minimum number of operations required to make the string an alternating one.
+
+Input
+The first line contains a single integer t (1≤t≤104)  — the number of test cases.
+
+The first line of each test case contains a single number n (1≤n≤2⋅105)  — the length of the string.
+
+The second line of each test case contains a string s, consisting of lowercase Latin letters.
+
+It is guaranteed that the sum of n across all test cases does not exceed 2⋅105.
+
+Output
+For each test case, output a single integer — the minimum number of operations required to turn the string s into an alternating one.
+
+Example
+Input
+10
+1
+a
+2
+ca
+3
+aab
+5
+ababa
+6
+acdada
+9
+ejibmyyju
+6
+bbccbc
+6
+abacba
+5
+bcbca
+5
+dcbdb
+Output
+1
+0
+1
+1
+2
+6
+2
+3
+1
+1
+Note
+For the string ababa, you can delete the first character to get baba, which is an alternating string.
+
+For the string acdada, you can change the first two characters to get dadada, which is an alternating string.
+
+F. Sakurako's Box
+time limit per test2 seconds
+memory limit per test256 megabytes
+Sakurako has a box with n balls. Each ball has it's value. She wants to bet with her friend that if the friend randomly picks two balls from the box (it could be two distinct balls, but they may have the same value), the product of their values will be the same as the number that Sakurako guessed.
+
+Since Sakurako has a PhD in probability, she knows that the best number to pick is the expected value, but she forgot how to calculate it. Help Sakurako and find the expected value of the product of two elements from the array.
+
+It can be shown that the expected value has the form PQ, where P and Q are non-negative integers, and Q≠0. Report the value of P⋅Q−1(mod109+7).
+
+Input
+The first line contains a single integer t (1≤t≤104)  — the number of test cases.
+
+The first line of each test case contains a single integer n (2≤n≤2⋅105)  — the number of elements in the array.
+
+The second line of each test case contains n integers a1,a2,…,an (0≤ai≤109)  — the elements of the array.
+
+It is guaranteed that the sum of n across all test cases does not exceed 2⋅105.
+
+Output
+For each test case, output the value of P⋅Q−1(mod109+7).
+
+Example
+Input
+3
+3
+3 2 3
+4
+2 2 2 4
+5
+1 2 3 4 5
+Output
+7
+6
+500000012
+Note
+For the first test, Sakurako's friend can pick these pairs of balls: (a1,a2), (a1,a3), (a2,a3). Their products equal to 3⋅2=6 , 3⋅3=9 , 3⋅2=6 respectively, so the expected value is 6+9+6/3=7.
+
+For the second test, Sakurako's friend can pick these pairs of balls: (a1,a2), (a1,a3), (a1,a4), (a2,a3), (a2,a4), (a3,a4). Their products equal to 2⋅2=4 , 2⋅2=4 , 2⋅4=8, 2⋅2=4, 2⋅4=8, 2⋅4=8 respectively, so the expected value is 4+4+8+4+8+8/6=36/6=6.
+
+G. Sakurako's Task
+time limit per test2 seconds
+memory limit per test256 megabytes
+Sakurako has prepared a task for you:
+
+She gives you an array of n integers and allows you to choose i and j such that i≠j and ai≥aj, and then assign ai=ai−aj or ai=ai+aj. You can perform this operation any number of times for any i and j, as long as they satisfy the conditions.
+
+Sakurako asks you what is the maximum possible value of mexk∗ of the array after any number of operations.∗mexk is the k-th non-negative integer that is absent in the array. For example, mex1({1,2,3})=0, since 0 is the first element that is not in the array, and mex2({0,2,4})=3, since 3 is the second element that is not in the array.
+
+Input
+The first line contains a single integer t (1≤t≤104)  — the number of test cases.The first line of each test case contains two integers n and k (1≤n≤2⋅105,1≤k≤109)  — the number of elements in the array and the value k for mexk.
+
+The second line of each test case contains n integers a1,a2,…,an (1≤ai≤109)  — the elements of the array.
+
+It is guaranteed that the sum of n across all test cases does not exceed 2⋅105.
+
+Output
+For each test case, output the maximum mexk that can be achieved through the operations.
+
+Example
+Input
+6
+1 3
+3
+2 10
+1 1
+3 1
+1 2 3
+3 2
+1 2 4
+4 5
+2 2 2 16
+4 5
+2 2 2 3
+Output
+2
+11
+3
+4
+8
+8
+
+
+H. Sakurako's Test
+time limit per test1 second
+memory limit per test256 megabytes
+Sakurako will soon take a test. The test can be described as an array of integers n and a task on it:
+
+Given an integer x, Sakurako can perform the following operation any number of times:
+Choose an integer i (1≤i≤n) such that ai≥x;Change the value of ai to ai−x.Using this operation any number of times, she must find the minimum possible median∗ of the array a.
+
+Sakurako knows the array but does not know the integer x. Someone let it slip that one of the q values of x will be in the next test, so Sakurako is asking you what the answer is for each such x.
+
+∗
+The median of an array of length n is the element that stands in the middle of the sorted array (at the n+22-th position for even n, and at the n+12-th for odd)
+
+Input
+The first line contains one integer t (1≤t≤104)  — the number of test cases.The first line of each test case contains two integers n and q (1≤n,q≤105)  — the number of elements in the array and the number of queries.
+The second line of each test case contains n integers a1,a2,…,an (1≤ai≤n)  — the elements of the array.
+
+The following q lines each contain one integer x (1≤x≤n).
+It is guaranteed that the sum of n across all test cases does not exceed 105. The same guarantee applies to the sum of q across all test cases.
+
+Output
+For each test case, output q integers  — the answer for each query.
+
+Example
+Input
+2
+5 5
+1 2 3 4 5
+1
+2
+3
+4
+5
+6 3
+1 2 6 4 1 3
+2
+1
+5
+Output
+0 1 1 1 2 
+1 0 2 

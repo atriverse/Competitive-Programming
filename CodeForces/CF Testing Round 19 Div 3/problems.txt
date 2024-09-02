@@ -1,0 +1,154 @@
+Testing Round 19 (Div. 3)
+A. Alternating Sum of Numbers
+time limit per test2 seconds
+memory limit per test256 megabytes
+You are given a sequence of integers. Output the alternating sum of this sequence. In other words, output a1−a2+a3−a4+a5−…. That is, the signs of plus and minus alternate, starting with a plus.
+
+Input
+The first line of the test contains one integer t (1≤t≤1000) — the number of test cases. Then follow t test cases.
+
+The first line of each test case contains one integer n (1≤n≤50) — the length of the sequence. The second line of the test case contains n integers a1,a2,…,an (1≤ai≤100).
+
+Output
+Output t lines. For each test case, output the required alternating sum of the numbers.
+Example
+Input
+4
+4
+1 2 3 17
+1
+100
+2
+100 100
+5
+3 1 4 1 5
+Output
+-15
+100
+0
+10
+
+B. Three Brothers
+time limit per test1 second
+memory limit per test256 megabytes
+Three brothers agreed to meet. Let's number the brothers as follows: the oldest brother is number 1, the middle brother is number 2, and the youngest brother is number 3.
+
+When it was time for the meeting, one of the brothers was late. Given the numbers of the two brothers who arrived on time, you need to determine the number of the brother who was late.
+
+Input
+The first line of input contains two different integers a and b (1 ≤ a, b ≤ 3, a ≠ b) — the numbers of the brothers who arrived on time. The numbers are given in arbitrary order.
+
+Output
+Output a single integer — the number of the brother who was late to the meeting.
+
+Example
+Input
+3 1
+Output
+2
+
+C1. Message Transmission Error (easy version)
+time limit per test2 seconds
+memory limit per test256 megabytes
+This is a simplified version of the problem. It differs from the difficult one only in its constraints.
+
+At the Berland State University, the local network between servers does not always operate without errors. When transmitting two identical messages consecutively, an error may occur, resulting in the two messages merging into one. In this merging, the end of the first message coincides with the beginning of the second. Of course, the merging can only occur at identical characters. The length of the merging must be a positive number less than the length of the message text.
+
+For example, when transmitting two messages "abrakadabra" consecutively, it is possible that it will be transmitted with the described type of error, resulting in a message like "abrakadabrabrakadabra" or "abrakadabrakadabra' (in the first case, the merging occurred at one character, and in the second case, at four).
+
+Given the received message t, determine if it is possible that this is the result of an error of the described type in the operation of the local network, and if so, determine a possible value of s.
+
+A situation where two messages completely overlap each other should not be considered an error. For example, if the received message is "abcd", it should be considered that there is no error in it. Similarly, simply appending one message after another is not a sign of an error. For instance, if the received message is "abcabc", it should also be considered that there is no error in it.
+
+Input
+The input consists of a single non-empty string t, consisting of lowercase letters of the Latin alphabet. The length of the string t does not exceed 100 characters.
+
+Output
+If the message t cannot contain an error, output "NO" (without quotes) in a single line of output.
+
+Otherwise, in the first line, output "YES" (without quotes), and in the next line, output the string s — a possible message that could have led to the error. If there are multiple possible answers, any of them is acceptable.
+
+Examples
+Input
+abrakadabrabrakadabra
+Output
+YES
+abrakadabra
+
+Input
+acacacaca
+Output
+YES
+acaca
+
+Input
+abcabc
+Output
+NO
+
+Input
+abababab
+Output
+YES
+ababab
+
+Input
+tatbt
+Output
+NO
+
+Note
+In the second example, a suitable answer could also be the string "acacaca".
+
+C2. Message Transmission Error (hard version)
+time limit per test2 seconds
+memory limit per test256 megabytes
+This is a more difficult version of the problem. It differs from the easy one only by the constraints.
+
+At the Berland State University, the local network between servers does not always operate without errors. When transmitting two identical messages consecutively, an error may occur, resulting in the two messages merging into one. In this merging, the end of the first message coincides with the beginning of the second. Of course, the merging can only occur at identical characters. The length of the merging must be a positive number less than the length of the message text.
+
+For example, when transmitting two messages "abrakadabra" consecutively, it is possible that it will be transmitted with the described type of error, resulting in a message like "abrakadabrabrakadabra" or "abrakadabrakadabra' (in the first case, the merging occurred at one character, and in the second case, at four).
+
+Given the received message t, determine if it is possible that this is the result of an error of the described type in the operation of the local network, and if so, determine a possible value of s.
+
+A situation where two messages completely overlap each other should not be considered an error. For example, if the received message is "abcd", it should be considered that there is no error in it. Similarly, simply appending one message after another is not a sign of an error. For instance, if the received message is "abcabc", it should also be considered that there is no error in it.
+
+Input
+The input consists of a single non-empty string t, consisting of lowercase letters of the Latin alphabet. The length of the string t does not exceed 4·105 characters.
+
+Output
+If the message t cannot contain an error, output "NO" (without quotes) in a single line of output.
+
+Otherwise, in the first line, output "YES" (without quotes), and in the next line, output the string s — a possible message that could have led to the error. If there are multiple possible answers, any of them is acceptable.
+
+Examples
+Input
+abrakadabrabrakadabra
+Output
+YES
+abrakadabra
+
+Input
+acacacaca
+Output
+YES
+acacaca
+
+Input
+abcabc
+Output
+NO
+
+Input
+abababab
+Output
+YES
+ababab
+
+Input
+tatbt
+Output
+NO
+
+Note
+In the second example, a suitable answer could also be the string "acacaca".
