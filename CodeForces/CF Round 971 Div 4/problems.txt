@@ -1,0 +1,466 @@
+Codeforces Round 971 (Div. 4)
+A. Minimize!
+time limit per test1 second
+memory limit per test256 megabytes
+You are given two integers a and b (a≤b). Over all possible integer values of c (a≤c≤b), find the minimum value of (c−a)+(b−c).
+
+Input
+The first line contains t (1≤t≤55) — the number of test cases.
+
+Each test case contains two integers a and b (1≤a≤b≤10).
+
+Output
+For each test case, output the minimum possible value of (c−a)+(b−c) on a new line.
+
+Example
+Input
+3
+1 2
+3 10
+5 5
+Output
+1
+7
+0
+Note
+In the first test case, you can choose c=1 and obtain an answer of (1−1)+(2−1)=1. It can be shown this is the minimum value possible.In the second test case, you can choose c=6 and obtain an answer of (6−3)+(10−6)=7. It can be shown this is the minimum value possible.
+
+
+B. osu!mania
+time limit per test1 second
+memory limit per test256 megabytes
+You are playing your favorite rhythm game, osu!mania. The layout of your beatmap consists of n rows and 4 columns. Because notes at the bottom are closer, you will process the bottommost row first and the topmost row last. Each row will contain exactly one note, represented as a '#'.
+
+For each note 1,2,…,n, in the order of processing, output the column in which the note appears.
+
+Input
+The first line contains t (1≤t≤100) — the number of test cases.
+
+For each test case, the first line contains n (1≤n≤500) — the number of rows of the beatmap.
+
+The following n lines contain 4 characters. The i-th line represents the i-th row of the beatmap from the top. It is guaranteed that the characters are either '.' or '#', and exactly one of the characters is '#'.
+
+It is guaranteed that the sum of n over all test cases does not exceed 500.
+
+Output
+For each test case, output n integers on a new line, the column that the i-th note appears in for all i from 1 to n.
+
+Example
+Input
+3
+4
+#...
+.#..
+..#.
+...#
+2
+.#..
+.#..
+1
+...#
+Output
+4 3 2 1 
+2 2 
+4 
+
+C. The Legend of Freya the Frog
+time limit per test2 seconds
+memory limit per test256 megabytes
+Freya the Frog is traveling on the 2D coordinate plane. She is currently at point (0,0) and wants to go to point (x,y). In one move, she chooses an integer d such that 0≤d≤k and jumps d spots forward in the direction she is facing.
+
+Initially, she is facing the positive x direction. After every move, she will alternate between facing the positive x direction and the positive y direction (i.e., she will face the positive y direction on her second move, the positive x direction on her third move, and so on).
+
+What is the minimum amount of moves she must perform to land on point (x,y)?
+
+Input
+The first line contains an integer t (1≤t≤104) — the number of test cases.
+Each test case contains three integers x, y, and k (0≤x,y≤109,1≤k≤109).
+
+Output
+For each test case, output the number of jumps Freya needs to make on a new line.
+
+Example
+Input
+3
+9 11 3
+0 10 8
+1000000 100000 10
+Output
+8
+4
+199999
+Note
+In the first sample, one optimal set of moves is if Freya jumps in the following way: (0,0) → (2,0) → (2,2) → (3,2) → (3,5) → (6,5) → (6,8) → (9,8) → (9,11). This takes 8 jumps.
+
+D. Satyam and Counting
+time limit per test2 seconds
+memory limit per test256 megabytes
+Satyam is given n distinct points on the 2D coordinate plane. It is guaranteed that 0≤yi≤1 for all given points (xi,yi). How many different nondegenerate right triangles∗ can be formed from choosing three different points as its vertices?
+Two triangles a and b are different if there is a point v such that v is a vertex of a but not a vertex of b.
+
+∗
+A nondegenerate right triangle has positive area and an interior 90∘ angle.
+
+Input
+The first line contains an integer t (1≤t≤104) — the number of test cases.
+The first line of each test case contains an integer n (3≤n≤2⋅105) — the number of points.
+
+The following n lines contain two integers xi and yi (0≤xi≤n, 0≤yi≤1) — the i'th point that Satyam can choose from. It is guaranteed that all (xi,yi) are pairwise distinct.
+
+It is guaranteed that the sum of n over all test cases does not exceed 2⋅105.
+
+Output
+Output an integer for each test case, the number of distinct nondegenerate right triangles that can be formed from choosing three points.
+
+Example
+Input
+3
+5
+1 0
+1 1
+3 0
+5 0
+2 1
+3
+0 0
+1 0
+3 0
+9
+1 0
+2 0
+3 0
+4 0
+5 0
+2 1
+7 1
+8 1
+9 1
+Output
+4
+0
+8
+Note
+The four triangles in question for the first test case:
+
+
+E. Klee's SUPER DUPER LARGE Array!!!
+time limit per test2 seconds
+memory limit per test256 megabytes
+Klee has an array a of length n containing integers [k,k+1,...,k+n−1] in that order. Klee wants to choose an index i (1≤i≤n) such that x=|a1+a2+⋯+ai−ai+1−⋯−an| is minimized. Note that for an arbitrary integer z, |z| represents the absolute value of z.
+Output the minimum possible value of x.
+
+Input
+The first line contains t (1≤t≤104) — the number of test cases.
+
+Each test case contains two integers n and k (2≤n,k≤109) — the length of the array and the starting element of the array.
+
+Output
+For each test case, output the minimum value of x on a new line.
+
+Example
+Input
+4
+2 2
+7 2
+5 3
+1000000000 1000000000
+Output
+1
+5
+1
+347369930
+Note
+In the first sample, a=[2,3]. When i=1 is chosen, x=|2−3|=1. It can be shown this is the minimum possible value of x.
+
+In the third sample, a=[3,4,5,6,7]. When i=3 is chosen, x=|3+4+5−6−7|=1. It can be shown this is the minimum possible value of x.
+
+F. Firefly's Queries
+time limit per test2 seconds
+memory limit per test256 megabytes
+Firefly is given an array a of length n. Let ci denote the i'th cyclic shift∗ of a. She creates a new array b such that b=c1+c2+⋯+cn where + represents concatenation†.
+
+Then, she asks you q queries. For each query, output the sum of all elements in the subarray of b that starts from the l-th element and ends at the r-th element, inclusive of both ends.
+
+∗The x-th (1≤x≤n) cyclic shift of the array a is ax,ax+1…an,a1,a2…ax−1. Note that the 1-st shift is the initial a.
+
+†The concatenation of two arrays p and q of length n (in other words, p+q) is p1,p2,...,pn,q1,q2,...,qn.
+
+Input
+The first line contains t (1≤t≤104) — the number of test cases.
+
+The first line of each test case contains two integers n and q (1≤n,q≤2⋅105) — the length of the array and the number of queries.
+
+The following line contains n integers a1,a2,...,an (1≤ai≤106).
+
+The following q lines contain two integers l and r (1≤l≤r≤n2) — the left and right bounds of the query.
+
+Note that the large inputs may require the use of 64-bit integers.
+
+It is guaranteed that the sum of n does not exceed 2⋅105 and the sum of q does not exceed 2⋅105.
+
+Output
+For each query, output the answer on a new line.
+
+Example
+Input
+5
+3 3
+1 2 3
+1 9
+3 5
+8 8
+5 5
+4 8 3 2 4
+1 14
+3 7
+7 10
+2 11
+1 25
+1 1
+6
+1 1
+5 7
+3 1 6 10 4
+3 21
+6 17
+2 2
+1 5
+1 14
+9 15
+12 13
+5 3
+4 9 10 10 1
+20 25
+3 11
+20 22
+Output
+18
+8
+1
+55
+20
+13
+41
+105
+6
+96
+62
+1
+24
+71
+31
+14
+44
+65
+15
+Note
+For the first test case, b=[1,2,3,2,3,1,3,1,2].
+
+G1. Yunli's Subarray Queries (easy version)
+time limit per test3 seconds
+memory limit per test512 megabytes
+This is the easy version of the problem. In this version, it is guaranteed that r=l+k−1 for all queries.
+
+For an arbitrary array b, Yunli can perform the following operation any number of times:
+
+Select an index i. Set bi=x where x is any integer she desires (x is not limited to the interval [1,n]).
+Denote f(b) as the minimum number of operations she needs to perform until there exists a consecutive subarray∗ of length at least k in b.
+
+Yunli is given an array a of size n and asks you q queries. In each query, you must output ∑rj=l+k−1f([al,al+1,…,aj]). Note that in this version, you are only required to output f([al,al+1,…,al+k−1]) since other segments contain less than k elements.
+
+∗If there exists a consecutive subarray of length k that starts at index i (1≤i≤|b|−k+1), then bj=bj−1+1 for all i<j≤i+k−1.
+
+Input
+The first line contains t (1≤t≤104) — the number of test cases.
+
+The first line of each test case contains three integers n, k, and q (1≤k≤n≤2⋅105, 1≤q≤2⋅105) — the length of the array, the length of the consecutive subarray, and the number of queries.
+The following line contains n integers a1,a2,…,an (1≤ai≤n).
+
+The following q lines contain two integers l and r (1≤l≤r≤n, r=l+k−1) — the bounds of the query.
+
+It is guaranteed that the sum of n over all test cases does not exceed 2⋅105 and the sum of q over all test cases does not exceed 2⋅105.
+
+Output
+Output ∑rj=l+k−1f([al,al+1,…,aj]) for each query on a new line.
+
+Example
+Input
+3
+7 5 3
+1 2 3 2 1 2 3
+1 5
+2 6
+3 7
+8 4 2
+4 3 1 1 2 4 3 2
+3 6
+2 5
+5 4 2
+4 5 1 2 3
+1 4
+2 5
+Output
+2
+3
+2
+2
+2
+2
+1
+Note
+In the first query of the first testcase, b=[1,2,3,2,1]. Yunli can make a consecutive subarray of length 5 in 2 moves:
+
+Set b4=4
+Set b5=5
+After operations b=[1,2,3,4,5].
+In the second query of the first testcase, b=[2,3,2,1,2]. Yunli can make a consecutive subarray of length 5 in 3 moves:
+
+Set b3=0
+Set b2=−1
+Set b1=−2
+After operations b=[−2,−1,0,1,2].
+
+G2. Yunli's Subarray Queries (hard version)
+time limit per test3 seconds
+memory limit per test512 megabytes
+This is the hard version of the problem. In this version, it is guaranteed that r≥l+k−1 for all queries.
+
+For an arbitrary array b, Yunli can perform the following operation any number of times:
+
+Select an index i. Set bi=x where x is any integer she desires (x is not limited to the interval [1,n]).
+Denote f(b) as the minimum number of operations she needs to perform until there exists a consecutive subarray∗ of length at least k in b.
+
+Yunli is given an array a of size n and asks you q queries. In each query, you must output ∑rj=l+k−1f([al,al+1,…,aj]).
+
+∗
+If there exists a consecutive subarray of length k that starts at index i (1≤i≤|b|−k+1), then bj=bj−1+1 for all i<j≤i+k−1.
+
+Input
+The first line contains t (1≤t≤104) — the number of test cases.
+The first line of each test case contains three integers n, k, and q (1≤k≤n≤2⋅105, 1≤q≤2⋅105) — the length of the array, the length of the consecutive subarray, and the number of queries.
+The following line contains n (1≤ai≤n).
+
+The following q lines contain two integers l and r (1≤l≤r≤n, r≥l+k−1) — the bounds of the query.
+
+It is guaranteed the sum of n over all test cases does not exceed 2⋅105 and the sum of q over all test cases does not exceed 2⋅105.
+
+Output
+Output ∑rj=l+k−1f([al,al+1,…,aj]) for each query on a new line.
+
+Example
+Input
+3
+7 5 3
+1 2 3 2 1 2 3
+1 7
+2 7
+3 7
+8 4 2
+4 3 1 1 2 4 3 2
+3 6
+1 5
+5 4 2
+4 5 1 2 3
+1 4
+1 5
+Output
+6
+5
+2
+2
+5
+2
+3
+Note
+In the second query of the first testcase, we calculate the following function values:
+
+f([2,3,2,1,2])=3 because Yunli can set b3=4, b4=5, and b5=6, making a consecutive subarray of size 5 in 3 moves.
+f([2,3,2,1,2,3]=2 because we can set b3=0 and b2=−1, making a consecutive subarray of size 5 in 2 moves (starting at position 2)
+The answer to this query is 3+2=5.
+
+G3. Yunli's Subarray Queries (extreme version)
+time limit per test3 seconds
+memory limit per test512 megabytes
+This is the extreme version of the problem. In this version, the output of each query is different from the easy and hard versions. It is also guaranteed that r≥l+k−1 for all queries.
+
+For an arbitrary array b, Yunli can perform the following operation any number of times:
+
+Select an index i. Set bi=x where x is any integer she desires (x is not limited to the interval [1,n]).
+Denote f(b) as the minimum number of operations she needs to perform until there exists a consecutive subarray∗ of length at least k in b.
+
+Yunli is given an array a of size n and asks you q queries. In each query, you must output ∑r−k+1i=l∑rj=i+k−1f([ai,ai+1,…,aj]).
+
+∗
+If there exists a consecutive subarray of length k that starts at index i (1≤i≤|b|−k+1), then bj=bj−1+1 for all i<j≤i+k−1.
+
+Input
+The first line contains t (1≤t≤104) — the number of test cases.
+The first line of each test case contains three integers n, k, and q (1≤k≤n≤2⋅105, 1≤q≤2⋅105) — the length of the array, the length of the consecutive subarray, and the number of queries.
+The following line contains n integers a1,a2,...,an (1≤ai≤n).
+
+The following q lines contain two integers l and r (1≤l≤r≤n, r≥l+k−1) — the bounds of the query.
+
+It is guaranteed that the sum of n over all test cases does not exceed 2⋅105 and the sum of q over all test cases does not exceed 2⋅105.
+
+Output
+Output ∑r−k+1i=l∑rj=i+k−1f([ai,ai+1,…,aj]) for each query on a new line.
+
+Example
+Input
+5
+7 2 4
+1 2 3 2 1 2 3
+4 6
+1 7
+2 7
+3 7
+8 4 2
+4 3 1 1 2 4 3 2
+3 6
+1 5
+5 4 2
+4 5 1 2 3
+1 4
+1 5
+10 4 8
+2 3 6 5 8 9 8 10 10 1
+2 7
+6 10
+1 9
+1 6
+3 9
+4 10
+2 10
+1 8
+10 7 4
+3 4 5 3 4 5 9 10 8 9
+1 9
+2 10
+1 10
+2 9
+Output
+1
+3
+3
+3
+2
+7
+2
+4
+8
+6
+28
+7
+16
+20
+32
+19
+18
+15
+26
+9
+Note
+In the first query of the first testcase, we can calculate the answer for the query through the following:
+
+i=4 and j=5: f([2,1])=1 because Yunli can set b2=3, making a consecutive subarray of size 2 in 1 move.i=4 and j=6: f([2,1,2])=0 because there is already a consecutive array of size 2.i=5 and j=6: f([1,2])=0 because there is already a consecutive array of size 2.
+The answer to this query is 1+0+0=1.
