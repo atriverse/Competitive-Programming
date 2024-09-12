@@ -44,9 +44,40 @@ k=3: It is impossible to make all characters of the string same
 k=4: Choose S1  ,S2  ,S3  ,S4  , and perform three flips on S2   and one flip on S3   to obtain S=1111 
 Thus, we can make all characters of the string same, with k=2 and k=4.
 */
+
+
+//Solution:
+/*
+The countValidK function takes a binary string (a string containing only '0's and '1's) as input and returns a count of how many ways the string can be made all the same (either all '0's or all '1's) by flipping a certain number of bits.
+
+Here's how the function works:
+
+    -> It counts how many '1's are in the string.
+    -> It calculates how many '0's are in the string (total length minus number of '1's).
+    -> It then checks for each possible number of flips (from 1 up to the length of the string) whether it's possible to make all characters the same using that many flips.
+    -> It counts how many of these possible flip counts work.
+
+The logic for determining if a certain number of flips (k) works is:
+
+    -> If the number of flips is at least as large as the number of '1's, and the difference is even, it works (we can flip all '1's to '0's and use any extra flips in pairs).
+    -> Or, if the number of flips is at least as large as the number of '0's, and the difference is even, it works (we can flip all '0's to '1's and use any extra flips in pairs).
+
+The main function handles multiple test cases. For each test case, it:
+
+    -> Reads the length of a binary string.
+    -> Reads the binary string itself.
+    -> Calls the countValidK function with this string.
+    -> Prints the result.
+*/
 #include <bits/stdc++.h>
 using namespace std;
 
+/**
+ * Counts the number of valid values of k in the range [1, N] for which the given binary string S of length N can be made equal by performing k flips.
+ *
+ * @param S The binary string of length N.
+ * @return The count of all valid values of k in the range [1, N] for which the string S can be made equal by performing k flips.
+ */
 int countValidK(const string& S) {
     int N = S.length();
     int ones = 0;

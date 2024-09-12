@@ -40,9 +40,33 @@ Thus, Chef needs to take a minimum of two trial sessions.
 
 Test case 3: It can be shown that Chef cannot purchase the membership, no matter how many trial sessions he takes.
 */
+
+
+//Solution:
+/*
+The solve function takes three inputs: d (the discount percentage per trial session), x (the original cost of the membership), and y (Chef's budget). Its purpose is to calculate how many trial sessions Chef needs to take before he can afford the membership.
+
+The function works by simulating the process of taking trial sessions. It starts with the full price of the membership and Chef's full budget. For each trial session, it reduces the price of the membership by applying the discount and checks if Chef can now afford it. If he can, it returns the number of sessions taken. If Chef runs out of money before being able to afford the membership, it returns -1 to indicate it's impossible.
+
+The main function handles the input and output. It first reads the number of test cases. Then, for each test case, it reads the values for d, x, and y, calls the solve function with these inputs, and prints the result.
+
+The key logic in the solve function is the loop that simulates taking trial sessions. It keeps track of the current price of the membership (xf) and Chef's remaining budget (yf). After each session, it applies the discount to the membership price and checks if Chef can afford it. If not, it continues to the next session.
+
+An important detail is that the function uses a double for xf to handle the fractional discounts more accurately. It also resets the membership price to the original value after each unsuccessful attempt, simulating Chef starting over with a new gym.
+
+In simple terms, this code is like a calculator that figures out how many trial gym sessions Chef needs to take before he can afford a membership, considering that each session gives him a discount but also costs money.
+*/
 #include <bits/stdc++.h>
 using namespace std;
 
+/**
+ * Calculates the minimum number of trial sessions required for Chef to purchase the lifetime membership at the gym, given the discount percentage, membership cost, and Chef's budget.
+ *
+ * @param d The additional discount percentage Chef gets for each trial session.
+ * @param x The cost of the lifetime membership.
+ * @param y Chef's total budget.
+ * @return The minimum number of trial sessions required, or -1 if it is impossible for Chef to purchase the membership.
+ */
 int solve(int d, int x, int y) {
     int count = 0;
     double xf = x; // Use double for better precision

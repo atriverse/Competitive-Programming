@@ -50,35 +50,65 @@ Test case 1: The first ball reaches the hole in 1 second, and the second ball re
 Test case 2: The second and third balls collide midway. As a result, only two balls will reach the hole 
 Test case 3: The first and second balls collide midway. After this, no further collisions occur. Thus, three balls reach the hole.
 */
-#include <bits/stdc++.h>
-using namespace std;
-#define ll long long
 
-void solve(){
-    ll n;
-    cin >> n;
-    vector<ll> ar(n), br(n);
-    for(ll i=0; i<n; i++) cin >> ar[i];
-    for(ll i=0; i<n; i++) cin >> br[i];
-    vector<pair<ll,ll>> vp(n);
-    for(ll i=0; i<n; i++){
-        vp[i] = {ar[i], br[i]};
+//Solution:
+/*
+How it works: The solve function does the main calculation. It first combines each ball's position and speed into a pair and stores these pairs in a vector. Then it sorts this vector based on the balls' positions.
+
+The algorithm then works backwards from the ball furthest from the hole. It calculates the time each ball would take to reach the hole if it didn't collide with any other ball. If a ball would reach the hole at the same time or earlier than the previously considered ball, it's counted as reaching the hole. This approach implicitly handles collisions, as balls that would collide are represented by the fastest one among them.
+
+Important logic:
+
+    -> Sorting the balls by position allows the algorithm to consider potential collisions efficiently.
+    -> Working backwards from the farthest ball simplifies collision detection.
+    -> The condition curr <= prev checks if the current ball reaches the hole before or at the same time as the previously considered ball.
+The main function handles multiple test cases. For each test case, it reads the input data, calls the solve function, and outputs the result.
+*/
+#include<bits/stdc++.h>
+
+#define ll long long
+#define lld long double
+using namespace std;
+
+
+/**
+ * Determines the number of balls that reach the hole given the initial positions and speeds of the balls.
+ *
+ * @param N The number of balls.
+ * @param A The initial positions of the balls.
+ * @param B The speeds of the balls.
+ * @return The number of balls that reach the hole.
+ */
+int solve(int N, vector<ll>& A, vector<ll>& B) {
+    vector<pair<lld,lld>> vec(N);
+    for(int i=0;i<N;i++){
+        vec[i].first=A[i];
+        vec[i].second=B[i];
     }
-    sort(vp.begin(), vp.end());
-    stack<ll> st;
-    for(ll i=0; i<n; i++){
-        // ar[i] / br[i]
-        // ar[i] / br[i]
-        // ar[i] / br[i] > ar[i] / br[i]
-        while(!st.empty() && (vp[st.top()].first * vp[i].second) > (vp[i].first * vp[st.top()].second)) st.pop();
-        st.push(i);
+    sort(vec.begin(),vec.end());
+    lld prev=10e9;
+    int ans=0;
+    for(int i=N-1;i>=0;i--){
+        lld curr=(vec[i].first/vec[i].second);
+        if(curr<=prev){
+            ans++;
+            prev=curr;
+        }
     }
-    cout << st.size() << endl;
+    return ans;
 }
 
 int main() {
-	int tt;
-	cin >> tt;
-	while(tt--) solve();
+
+    int T;
+    cin >> T;
+    while (T--) {
+        int N;
+        cin >> N;
+        vector<ll> A(N), B(N);
+        for (int i = 0; i < N; i++) cin >> A[i];
+        for (int i = 0; i < N; i++) cin >> B[i];
+        cout << solve(N, A, B) << '\n';
+    }
     return 0;
 }
