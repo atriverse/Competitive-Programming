@@ -55,31 +55,59 @@ Note
 In the first example, the student can just stay at cell 2. The teacher, initially located in cell 1, can reach cell 2 in one move. Therefore, the answer is 1.
 
 In the second example, the student should just stay at cell 1. The teacher, initially located in cell 3, can reach cell 1 in two moves. Therefore, the answer is 2.
+
+B2. The Strict Teacher (Hard Version)
+time limit per test1.5 seconds
+memory limit per test256 megabytes
+This is the hard version of the problem. The only differences between the two versions are the constraints on m and q. In this version, m,q≤10^5. You can make hacks only if both versions of the problem are solved.
 */
 
+
+// Solution:
+/*
+For the easy version, there are three cases and they can be considered separately.
+
+Case 1: David is in the left of both teachers. In this case, it is obvious that he needs to go as far left as possible, which is cell 1. Then, the time needed to catch David will be b1−1.
+Case 2: David is in the right of both teachers. In this case, similarly, David needs to go as far right as possible, which is cell n. Then, the time needed to catch David will be n−b2.
+
+Case 3: David is between the two teachers. In this case, David needs to stay in the middle (if there are two middle cells, it doesn't matter which one is picked as the middle) of two teachers, so they both have to come closer to him simultaneously. So, they will need the same amount of time, which will be (b2−b1)/2. Notice, that David can always go to the middle cell not depending on his cell number.
+
+For the hard version, the solution is the same as the easy version, but the queries and teachers are more.
+For this version, there are three cases, too. Case 1 and Case 2 from the above solution are still correct, but the last one should be changed a bit because now it is important between which two consecutive teachers David is. To find that teachers, we can use binary search (after sorting b, of course). After finding that David is between teachers i and i+1, the answer is (bi+1−bi)/2, just like the easy version.
+*/
 #include<bits/stdc++.h>
 using namespace std;
-#define int long long
-int32_t main(){
-	int t;
-	cin>>t;
-	while(t--){
-		int n,m,q;
-		cin>>n>>m>>q;
-		vector<int> v(m,0);
-		for(int i=0;i<m;i++){
-			cin>>v[i];
-		}
-		int d;
-		cin>>d;
-		int ans=0;
-		if((d<=v[0] && d<=v[1]) || (d>=v[0] && d>=v[1])){
-			ans=min(abs(v[0]-d),abs(v[1]-d));
-		}
-		else{
-			ans=abs(v[0]-v[1])/2;
-		}
-		cout<<ans<<endl;
-	}
-	return 0;
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+
+    int tt; cin >> tt;
+
+    while(tt--) {
+        int n, m, q; cin >> n >> m >> q;
+
+        vector<int>arr(m);
+        for(auto &i : arr) cin >> i;
+
+        sort(arr.begin(), arr.end());
+
+        for(int i = 0; i < q; i++) {
+            int x; cin >> x;
+            int right = lower_bound(arr.begin(), arr.end(), x) - arr.begin();
+            int left = right - 1;
+
+            if(right == m) {
+                cout << (n - x) + (x - arr[left]) << "\n";
+            }
+            else if(left == -1) {
+                cout << x - 1 + (arr[right] - x) << "\n";
+            }
+            else {
+                int distL = x - arr[left], distR = arr[right] - x;
+                cout << abs(distL - distR) / 2 + min(distR, distL) << "\n";
+            }
+        }
+    }
 }
