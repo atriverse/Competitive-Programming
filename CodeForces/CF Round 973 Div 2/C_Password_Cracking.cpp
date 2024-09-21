@@ -82,3 +82,105 @@ In the first example, the string 010 is given. Therefore, the answers to the que
 
 In the second example, the string is 1100, in the third 0110, and in the fourth 10.
 */
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// Function to perform a query
+/**
+ * Performs a query to check if a given character is a substring of the current password.
+ *
+ * @param ans The current password being built.
+ * @param ch The character to check as a potential substring.
+ * @param type The type of query to perform (0 for prepending, 1 for appending).
+ * @param queries_count The number of queries performed so far.
+ * @param n The length of the password.
+ * @return 1 if the character is a substring, 0 otherwise.
+ */
+int performQuery(const deque<char> &ans, char ch, int type, int &queries_count, int n)
+{
+    if (++queries_count > 2 * n)
+        return 1;
+
+    cout << "? ";
+    if (type == 0)
+        cout << ch;
+    for (char c : ans)
+    {
+        cout << c;
+    }
+    if (type == 1)
+        cout << ch;
+    cout << endl;
+
+    int res;
+    cin >> res;
+    return res;
+}
+
+// Function to print the final answer
+/**
+ * Prints the final password answer to the console.
+ *
+ * @param ans The final password built up from the queries.
+ */
+void printAnswer(const deque<char> &ans)
+{
+    cout << "! ";
+    for (char c : ans)
+        cout << c;
+    cout << endl;
+}
+
+int main()
+{
+    int t;
+    cin >> t;
+
+    while (t--)
+    {
+        int n;
+        cin >> n;
+
+        deque<char> ans;
+        int type = 0;
+        int queries_count = 0;
+
+        /**
+         * Attempts to find the next character to append or prepend to the current password.
+         * Performs queries to check if a character is a substring of the current password.
+         * If a character is found, it is added to the password. If no character is found,
+         * the query type is switched (from prepend to append, or vice versa).
+         *
+         * @param ans The current password being built.
+         * @param type The type of query to perform (0 for prepending, 1 for appending).
+         * @param queries_count The number of queries performed so far.
+         * @param n The length of the password.
+         */
+        for (int i = 0; i < n; i++)
+        {
+            bool found = false;
+            for (char c = '0'; c <= '1'; c++)
+            {
+                if (performQuery(ans, c, type, queries_count, n) == 1)
+                {
+                    if (type == 0)
+                        ans.push_front(c);
+                    else
+                        ans.push_back(c);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+            {
+                assert(++type <= 1);
+                i--;
+            }
+        }
+
+        printAnswer(ans);
+    }
+
+    return 0;
+}

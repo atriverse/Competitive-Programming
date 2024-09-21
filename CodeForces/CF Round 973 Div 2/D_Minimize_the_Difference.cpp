@@ -48,43 +48,163 @@ In the third testcase, you can perform the operation twice with i=1.
 After that, the array is a=[2,3,2,3], and max(2,3,2,3)−min(2,3,2,3)=3−2=1.
 */
 #include <bits/stdc++.h>
-
 using namespace std;
 
-long long solve(vector<long long>& a) {
-    int n = a.size();
-    long long sum = 0;
-    for (int i = 0; i < n; i++) {
-        sum += a[i];
+#define int long long
+
+vector<int> heights;
+
+/**
+ * Checks if it is possible to set the maximum height of the buildings to the given `height` value.
+ *
+ * The function calculates the total excess height that would be required to raise all buildings to the
+ * given `height` value. If the total excess height is 0, it means it is possible to set the maximum
+ * height to the given value.
+ *
+ * @param height The height value to check for.
+ * @return `true` if it is possible to set the maximum height to the given value, `false` otherwise.
+ */
+bool isValidMaxHeight(int height)
+{
+    int excess = 0;
+    for (int i = 0; i < heights.size(); i++)
+    {
+        if (heights[i] > height)
+        {
+            excess += heights[i] - height;
+        }
+        else
+        {
+            excess = max(0LL, excess - (height - heights[i]));
+        }
     }
-    
-    long long avg = sum / n;
-    long long rem = sum % n;
-    
-    long long min_val = avg;
-    long long max_val = avg + (rem > 0);
-    
-    return max_val - min_val;
+    return excess == 0;
 }
 
-int main() {
+/**
+ * Finds the maximum height that can be set for all buildings such that the difference between the
+ * maximum and minimum heights is minimized.
+ *
+ * The function uses a binary search approach to find the maximum height that satisfies the condition
+ * that the total excess height required to raise all buildings to that height is 0. The search
+ * starts with the range [0, 1e12] and narrows down the search space until the maximum height is found.
+ *
+ * @return The maximum height that can be set for all buildings such that the difference between the
+ * maximum and minimum heights is minimized.
+ */
+int findMaxHeight()
+{
+    int left = 0, right = 1e12, result = right;
+    while (left <= right)
+    {
+        int mid = (left + right) / 2;
+        if (isValidMaxHeight(mid))
+        {
+            result = mid;
+            right = mid - 1;
+        }
+        else
+        {
+            left = mid + 1;
+        }
+    }
+    return result;
+}
+
+/**
+ * Checks if it is possible to set the minimum height of all buildings to the given value.
+ *
+ * The function calculates the total excess height required to raise all buildings to the given height.
+ * If the total excess height is non-negative, it means it is possible to set the minimum height to the
+ * given value. The function returns `true` in this case, and `false` otherwise.
+ *
+ * @param height The height value to check for.
+ * @return `true` if it is possible to set the minimum height to the given value, `false` otherwise.
+ */
+bool isValidMinHeight(int height)
+{
+    int excess = 0;
+    for (int i = 0; i < heights.size(); i++)
+    {
+        if (heights[i] >= height)
+        {
+            excess += heights[i] - height;
+        }
+        else
+        {
+            excess -= height - heights[i];
+            if (excess < 0)
+                return false;
+        }
+    }
+    return true;
+}
+
+/**
+ * Finds the minimum height that can be set for all buildings such that the difference between the
+ * maximum and minimum heights is minimized.
+ *
+ * The function uses a binary search approach to find the minimum height. It starts with a search
+ * range of [0, 1e12] and narrows down the range based on the result of the `isValidMinHeight`
+ * function. The function returns the minimum height that satisfies the condition.
+ *
+ * @return The minimum height that can be set for all buildings such that the difference between the
+ * maximum and minimum heights is minimized.
+ */
+int findMinHeight()
+{
+    int left = 0, right = 1e12, result = left;
+    while (left <= right)
+    {
+        int mid = (left + right) / 2;
+        if (isValidMinHeight(mid))
+        {
+            result = mid;
+            left = mid + 1;
+        }
+        else
+        {
+            right = mid - 1;
+        }
+    }
+    return result;
+}
+
+/**
+ * The main entry point of the program.
+ * 
+ * This function reads in a number of test cases, and for each test case:
+ * 1. Reads in the number of buildings `n`.
+ * 2. Reads in the heights of the `n` buildings.
+ * 3. Calls the `findMaxHeight` and `findMinHeight` functions to determine the maximum and minimum heights that can be set for all buildings such that the difference between the maximum and minimum heights is minimized.
+ * 4. Prints the difference between the maximum and minimum heights.
+ *
+ * @return 0 on successful completion.
+ */
+int32_t main()
+{
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    
-    int t;
-    cin >> t;
-    
-    while (t--) {
+
+    int testCases;
+    cin >> testCases;
+
+    while (testCases--)
+    {
         int n;
         cin >> n;
-        
-        vector<long long> a(n);
-        for (int i = 0; i < n; i++) {
-            cin >> a[i];
+
+        heights.resize(n);
+        for (int i = 0; i < n; i++)
+        {
+            cin >> heights[i];
         }
-        
-        cout << solve(a) << "\n";
+
+        int maxHeight = findMaxHeight();
+        int minHeight = findMinHeight();
+
+        cout << maxHeight - minHeight << "\n";
     }
-    
+
     return 0;
 }

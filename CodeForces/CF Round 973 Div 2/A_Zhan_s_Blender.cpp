@@ -89,7 +89,11 @@ int main() {
         long long n, x, y;
         cin >> n >> x >> y;
         
-        cout << minTimeToBlendFruits(n, x, y) << endl;
+        cout << minTimeToBlendFruits(n, x, y) << endl;//IN contest submission
+
+        //Another way to solve directly ny taking ceil of  n/z
+        int z=min(x,y);
+        cout<<(n+z-1)/z<<endl;
     }
     
     return 0;
