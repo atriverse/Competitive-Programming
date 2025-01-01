@@ -13,7 +13,7 @@ int main()
 
     while (t--)
     {
-        cout<<"Hello"<<endl;
+        cout<<"Hello World!"<<endl;
     }
 
     return 0;
